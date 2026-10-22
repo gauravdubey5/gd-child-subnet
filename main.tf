@@ -21,13 +21,13 @@ resource "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "nsg_assoc" {
-  count                     = var.network_security_group_id != null ? 1 : 0
+  count                     = var.associate_network_security_group ? 1 : 0
   subnet_id                 = azurerm_subnet.subnet.id
   network_security_group_id = var.network_security_group_id
 }
 
 resource "azurerm_subnet_route_table_association" "rt_assoc" {
-  count          = var.route_table_id != null ? 1 : 0
+  count          = var.associate_route_table ? 1 : 0
   subnet_id      = azurerm_subnet.subnet.id
   route_table_id = var.route_table_id
 }

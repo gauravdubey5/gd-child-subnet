@@ -28,14 +28,26 @@ variable "address_prefixes" {
   }
 }
 
+variable "associate_network_security_group" {
+  description = "Whether to associate a Network Security Group with this subnet."
+  type        = bool
+  default     = false
+}
+
 variable "network_security_group_id" {
-  description = "The Network Security Group ID to associate with this subnet, if any."
+  description = "The Network Security Group ID to associate with this subnet when associate_network_security_group is true."
   type        = string
   default     = null
 }
 
+variable "associate_route_table" {
+  description = "Whether to associate a Route Table with this subnet."
+  type        = bool
+  default     = false
+}
+
 variable "route_table_id" {
-  description = "The Route Table ID to associate with this subnet, if any."
+  description = "The Route Table ID to associate with this subnet when associate_route_table is true."
   type        = string
   default     = null
 }
