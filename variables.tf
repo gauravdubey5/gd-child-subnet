@@ -1,3 +1,27 @@
+variable "subnet" {
+  description = "A mapping of subnet names to their properties."
+  type = map(object({
+    name                          = string
+    resource_group_name           = string
+    virtual_network_name          = string
+    address_prefixes              = list(string)
+    associate_network_security_group = bool
+    network_security_group_id     = optional(string)
+    associate_route_table         = bool
+    route_table_id                = optional(string)
+    service_endpoints             = optional(list(string))
+    service_endpoint_policy_ids   = optional(list(string))
+    private_endpoint_network_policies = string
+    private_link_service_network_policies_enabled = bool
+    delegations                   = optional(list(object({
+      name               = string
+      service_delegation = object({
+        name    = string
+        actions = optional(list(string))
+      })
+    })))
+  }))
+}
 variable "name" {
   description = "The name of the subnet. Must be between 1 and 80 characters."
   type        = string
